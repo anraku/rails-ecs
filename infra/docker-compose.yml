@@ -1,0 +1,17 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+      MYSQL_DATABASE: test
+  web:
+    build: ../rails-ecs
+    volumes:
+      - ../rails-ecs:/rails-ecs
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
